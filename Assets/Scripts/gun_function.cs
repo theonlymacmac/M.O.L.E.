@@ -23,14 +23,12 @@ public class gun_function : MonoBehaviour{
         aimGunEndPointTransform = aimTransform.Find("GunEndPointPosition");
     }
 
-    private void Update() {
+    private void Update() {        
         HandleAiming();
         HandleShooting();
     }
    private void HandleAiming() {
-        //Vector3 mousePosition = UtilsClass.GetMouseWorldPosition();
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Debug.Log(mousePosition);
+        Vector3 mousePosition = UtilsClass.GetMouseWorldPosition();       
         Vector3 aimDirection = (mousePosition - transform.position).normalized;
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         aimTransform.eulerAngles = new Vector3(0, 0, angle);
