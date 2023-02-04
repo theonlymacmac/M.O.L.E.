@@ -22,7 +22,8 @@ public class Player_Movement : MonoBehaviour{
     [SerializeField] private Transform groundCheckF;
     [SerializeField] private Transform groundCheckB;
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private Transform wallCheck;
+    [SerializeField] private Transform wallCheckF;
+    [SerializeField] private Transform wallCheckB;
     [SerializeField] private LayerMask wallLayer;
 
     private void Update(){
@@ -58,12 +59,16 @@ public class Player_Movement : MonoBehaviour{
         return Physics2D.OverlapCircle(groundCheckB.position, 0.2f, groundLayer);
     }
 
-    private bool IsWalled(){
-        return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
+    private bool IsWalledF(){
+        return Physics2D.OverlapCircle(wallCheckF.position, 0.2f, wallLayer);
+    }
+
+    private bool IsWalledB(){
+        return Physics2D.OverlapCircle(wallCheckB.position, 0.2f, wallLayer);
     }
 
     private void WallSlide(){
-        if (IsWalled() && (!IsGroundedF() || !IsGroundedB()) && horizontal != 0f){ ///////////////////
+        if ((IsWalledF() || IsWalledB()) && (!IsGroundedF() || !IsGroundedB()) && horizontal != 0f){ ///////////////////
             isWallSliding = true;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
         }
