@@ -3,20 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
 
+public class gun_function : MonoBehaviour{
 
-
-public class gun_function : MonoBehaviour
-{
     private Transform aimTransform;
-    // Start is called before the first frame update
-    private void Start()
-    {
+
+    private void Start(){
         aimTransform = transform.Find("Aim");
     }
 
-    // Update is called once per frame
-   private void Update()
-    {
+   private void Update(){
         Vector3 mousePosition = UtilsClass.GetMouseWorldPosition();
 
         Vector3 aimDirection = (mousePosition - transform.position).normalized;
@@ -24,4 +19,5 @@ public class gun_function : MonoBehaviour
         aimTransform.eulerAngles = new Vector3(0, 0, angle);
         Debug.Log(angle);
     }
+
 }
