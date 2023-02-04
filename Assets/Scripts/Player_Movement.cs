@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour{
         WallJump();
 
         if (!isWallJumping){
-            Flip();
+           Flip();
         }
     }
 
@@ -50,21 +50,21 @@ public class PlayerMovement : MonoBehaviour{
     }
 
     private bool IsGrounded(){
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+       return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
     private bool IsWalled(){
-        return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
+       return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
     }
 
     private void WallSlide(){
-        if (IsWalled() && !IsGrounded() && horizontal != 0f){
-            isWallSliding = true;
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
-        }
-        else{
-            isWallSliding = false;
-        }
+       if (IsWalled() && !IsGrounded() && horizontal != 0f){
+           isWallSliding = true;
+           rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+       }
+       else{
+           isWallSliding = false;
+       }
     }
 
     private void WallJump(){
@@ -99,7 +99,7 @@ public class PlayerMovement : MonoBehaviour{
         isWallJumping = false;
     }
 
-    private void Flip(){
+    public void Flip(){
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f){
             isFacingRight = !isFacingRight;
             Vector3 localScale = transform.localScale;
