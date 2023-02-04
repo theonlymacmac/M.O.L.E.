@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour{
+public class Player_Movement : MonoBehaviour{
     private float horizontal;
     private float speed = 8f;
     private float jumpingPower = 16f;
@@ -19,7 +19,8 @@ public class PlayerMovement : MonoBehaviour{
     private Vector2 wallJumpingPower = new Vector2(8f, 16f);
 
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private Transform groundCheck;
+    [SerializeField] private Transform groundCheckF;
+    [SerializeField] private Transform groundCheckB;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform wallCheck;
     [SerializeField] private LayerMask wallLayer;
@@ -27,7 +28,7 @@ public class PlayerMovement : MonoBehaviour{
     private void Update(){
         horizontal = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetButtonDown("Jump") && IsGrounded()){
+        if (Input.GetButtonDown("Jump") && (IsGroundedF() || IsGroundedB())){
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
         }
 
@@ -39,7 +40,7 @@ public class PlayerMovement : MonoBehaviour{
         WallJump();
 
         if (!isWallJumping){
-           Flip();
+            Flip();
         }
     }
 
@@ -49,28 +50,32 @@ public class PlayerMovement : MonoBehaviour{
         }
     }
 
-    private bool IsGrounded(){
-       return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    private bool IsGroundedF(){
+        return Physics2D.OverlapCircle(groundCheckF.position, 0.2f, groundLayer);
+    }
+
+    private bool IsGroundedB(){
+        return Physics2D.OverlapCircle(groundCheckB.position, 0.2f, groundLayer);
     }
 
     private bool IsWalled(){
-       return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
+        return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
     }
 
     private void WallSlide(){
-       if (IsWalled() && !IsGrounded() && horizontal != 0f){
-           isWallSliding = true;
-           rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
-       }
-       else{
-           isWallSliding = false;
-       }
+        if (IsWalled() && (!IsGroundedF() || !IsGroundedB()) && horizontal != 0f){ ///////////////////
+            isWallSliding = true;
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+        }
+        else{
+            isWallSliding = false;
+        }
     }
 
     private void WallJump(){
         if (isWallSliding){
             isWallJumping = false;
-            wallJumpingDirection = -transform.localScale.x;
+            wallJumpingDirection = transform.localScale.x;
             wallJumpingCounter = wallJumpingTime;
 
             CancelInvoke(nameof(StopWallJumping));
@@ -99,7 +104,7 @@ public class PlayerMovement : MonoBehaviour{
         isWallJumping = false;
     }
 
-    public void Flip(){
+    private void Flip(){
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f){
             isFacingRight = !isFacingRight;
             Vector3 localScale = transform.localScale;
