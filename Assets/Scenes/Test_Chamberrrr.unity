@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6242092}
   - component: {fileID: 6242091}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 402747111}
   - component: {fileID: 402747110}
   - component: {fileID: 402747109}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Tilemap_Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1613,6 +1613,37 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!1 &609963983
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 609963984}
+  m_Layer: 0
+  m_Name: Wall Check
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &609963984
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609963983}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.392, y: 0.386, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1685024253}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1328024793
 GameObject:
   m_ObjectHideFlags: 0
@@ -1710,7 +1741,7 @@ GameObject:
   - component: {fileID: 1685024251}
   - component: {fileID: 1685024250}
   - component: {fileID: 1685024249}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: tmpPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1733,7 +1764,7 @@ MonoBehaviour:
   groundCheck: {fileID: 2049512953}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
 --- !u!50 &1685024250
 Rigidbody2D:
   serializedVersion: 4
@@ -1764,7 +1795,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1685024248}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6821e008ade97a846be1646ee70144db, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -1847,6 +1878,7 @@ Transform:
   m_Children:
   - {fileID: 2049512953}
   - {fileID: 1328024794}
+  - {fileID: 609963984}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
