@@ -13,10 +13,19 @@ public class gun_function : MonoBehaviour{
         public Vector3 shootPosition;
     }
 
+    public GameObject BouncerBullet;
     private Transform aimTransform;
     private Animator aimAnimator;
     public Transform aimGunEndPointTransform;
 
+    public void FireBullet()
+    {
+        Vector3 mousePosition = UtilsClass.GetMouseWorldPosition();
+        Vector3 aimDirection = (mousePosition - transform.position).normalized;
+        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        GameObject Bang_BouncerBullet = Instantiate(BouncerBullet, aimGunEndPointTransform.position, Quaternion.identity);
+
+    }
     public void Start(){
         aimTransform = transform.Find("Gun");
         aimAnimator = aimTransform.GetComponent<Animator>();
@@ -37,7 +46,7 @@ public class gun_function : MonoBehaviour{
     private void HandleShooting() { 
         if (Input.GetMouseButtonDown(0))
         {
-        Vector3 mousePosition = UtilsClass.GetMouseWorldPosition();
+            FireBullet();
         
 
         }
