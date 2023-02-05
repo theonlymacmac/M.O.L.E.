@@ -47,6 +47,16 @@ public class Tilemap {
         SaveSystem.SaveObject(saveObject);
     }
 
+    internal object WorldToCell(Vector3 hitPosition)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal void SetTile(object p1, object p2)
+    {
+        throw new NotImplementedException();
+    }
+
     public void Load() {
         SaveObject saveObject = SaveSystem.LoadMostRecentObject<SaveObject>();
         foreach (TilemapObject.SaveObject tilemapObjectSaveObject in saveObject.tilemapObjectSaveObjectArray) {
