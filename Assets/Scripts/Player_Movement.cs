@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player_Movement : MonoBehaviour{
+
+    public Animator animator;
+
     private float horizontal;
     private float speed = 8f;
     private float jumpingPower = 16f;
@@ -27,6 +30,9 @@ public class Player_Movement : MonoBehaviour{
     [SerializeField] private LayerMask wallLayer;
 
     private void Update(){
+
+        animator.SetFloat("Speed", horizontal);
+
         horizontal = Input.GetAxisRaw("Horizontal");
 
         if (Input.GetButtonDown("Jump") && (IsGroundedF() || IsGroundedB())){
@@ -40,9 +46,10 @@ public class Player_Movement : MonoBehaviour{
         WallSlide();
         WallJump();
 
-        if (!isWallJumping){
-            Flip();
-        }
+
+        // if (!isWallJumping){
+        //     Flip();
+        // }
     }
 
     private void FixedUpdate(){

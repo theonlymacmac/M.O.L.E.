@@ -31,7 +31,7 @@ public class gun_function : MonoBehaviour
 
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
 
-        Debug.Log(rotZ);
+        //Debug.Log(rotZ);
 
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
 
@@ -50,6 +50,7 @@ public class gun_function : MonoBehaviour
             }
 
         }
+
 
         if (!canFire)
         {
