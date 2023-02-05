@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player_Movement : MonoBehaviour{
+
+    public Animator animator;
+
     private float horizontal;
     private float speed = 8f;
     private float jumpingPower = 16f;
@@ -43,6 +46,8 @@ public class Player_Movement : MonoBehaviour{
         if (!isWallJumping){
             Flip();
         }
+
+        animator.SetFloat("Speed", Mathf.Abs(horizontal));
     }
 
     private void FixedUpdate(){
