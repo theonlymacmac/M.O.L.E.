@@ -1,8 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: a24e84a15644db74cb9485fb1a12015a
 folderAsset: yes
 timeCreated: 1523729004
 licenseType: Pro
+=======
+guid: 7a0552a846c11a14bb24ef9ec264d535
+folderAsset: yes
+>>>>>>> Stashed changes
 DefaultImporter:
   externalObjects: {}
   userData: 

@@ -11,8 +11,36 @@ public class gun_function : MonoBehaviour{
     {
         public Vector3 gunEndPointPosition;
         public Vector3 shootPosition;
+<<<<<<< Updated upstream
+=======
     }
 
+    public GameObject BouncerBullet;
+    private Transform aimTransform;
+    private Animator aimAnimator;
+    public Transform aimGunEndPointTransform;
+
+    public void FireBullet()
+    {
+      
+        GameObject Bang_BouncerBullet = Instantiate(BouncerBullet, aimGunEndPointTransform.position, Quaternion.identity);
+
+>>>>>>> Stashed changes
+    }
+    public void Start(){
+        aimTransform = transform.Find("Gun");
+        aimGunEndPointTransform = aimTransform.Find("GunEndPointPosition");
+    }
+    public float speed = 5f;
+    private void Update() {
+    
+        Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, speed * Time.deltaTime);
+
+
+<<<<<<< Updated upstream
     public GameObject BouncerBullet;
     private Transform aimTransform;
     private Animator aimAnimator;
@@ -49,6 +77,19 @@ public class gun_function : MonoBehaviour{
             FireBullet();
         
 
+=======
+ 
+        HandleShooting();
+  
+    }
+ 
+    private void HandleShooting() { 
+        if (Input.GetMouseButtonDown(0))
+        {
+            FireBullet();
+        
+
+>>>>>>> Stashed changes
         }
     }
 
